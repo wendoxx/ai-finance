@@ -20,7 +20,7 @@ public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private BigDecimal incomeAmount;
-    private LocalDate incomeDate;
-    private String incomeDescription;
+    private BigDecimal amount;
+    private LocalDate date;
+    private String description;
 }
