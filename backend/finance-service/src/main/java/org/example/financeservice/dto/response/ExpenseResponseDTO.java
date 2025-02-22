@@ -4,13 +4,14 @@ import lombok.Data;
 import org.example.financeservice.model.Expense;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
 public class ExpenseResponseDTO {
     private UUID id;
     private BigDecimal amount;
-    private String date;
+    private LocalDate date;
     private String description;
 
     public ExpenseResponseDTO(Expense expense) {

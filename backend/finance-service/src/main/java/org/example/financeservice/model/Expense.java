@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +22,6 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private BigDecimal amount;
-    private String date;
+    private LocalDate date;
     private String description;
 }
