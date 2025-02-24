@@ -1,4 +1,4 @@
-CREATE TABLE expenses (
+CREATE TABLE expense (
     id UUID PRIMARY KEY,
     amount DECIMAL(10, 2) NOT NULL,
     date DATE NOT NULL,
