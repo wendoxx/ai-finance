@@ -32,7 +32,7 @@ public class ExpenseController {
         return ResponseEntity.status(201).body(expenseService.createAndUpdateExpense(expenseRequestDTO));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete-expense/{id}")
     public ResponseEntity<ExpenseResponseDTO> deleteExpense(UUID id) {
         expenseService.deleteExpense(id);
         return ResponseEntity.noContent().build();
