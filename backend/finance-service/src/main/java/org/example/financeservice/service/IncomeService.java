@@ -30,7 +30,7 @@ public class IncomeService {
 
         income.setAmount(incomeRequestDTO.amount());
         income.setDate(incomeRequestDTO.date());
-        income.setDescription(incomeRequestDTO.incomeDescription());
+        income.setDescription(incomeRequestDTO.description());
 
         return incomeRepository.save(income);
     }
