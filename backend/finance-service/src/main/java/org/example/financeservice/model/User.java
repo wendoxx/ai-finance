@@ -1,12 +1,16 @@
 package org.example.financeservice.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.financeservice.utils.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +18,12 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 @Data
-public class User implements UserDetails {
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements UserDetails, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +40,12 @@ public class User implements UserDetails {
 
     @Column(name = "role", nullable = false)
     private Role role;
+
+    public User(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
