@@ -8,6 +8,7 @@ import org.example.financeservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,12 +20,12 @@ public class AuthController {
     AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
         return ResponseEntity.ok(authService.login(loginRequestDTO));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponseDTO> register(RegisterRequestDTO registerRequestDTO) {
+    public ResponseEntity<RegisterResponseDTO> register(@RequestBody RegisterRequestDTO registerRequestDTO) {
         return ResponseEntity.ok(authService.register(registerRequestDTO));
     }
 }
