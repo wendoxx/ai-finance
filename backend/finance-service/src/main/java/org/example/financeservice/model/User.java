@@ -41,8 +41,9 @@ public class User implements UserDetails, Serializable {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    public User(String email, String password, Role role) {
+    public User(String email, String name, String password, Role role) {
         this.email = email;
+        this.name = name;
         this.password = password;
         this.role = role;
     }
