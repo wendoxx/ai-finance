@@ -13,6 +13,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -41,11 +42,19 @@ public class User implements UserDetails, Serializable {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    public User(String email, String name, String password, Role role) {
+    @OneToMany(mappedBy = "user")
+    private Set<Income> incomes;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Expense> expenses;
+
+    public User(String email, String name, String password, Role role, Set<Income> incomes, Set<Expense> expenses) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.role = role;
+        this.incomes = incomes;
+        this.expenses = expenses;
     }
 
     @Override
