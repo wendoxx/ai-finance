@@ -39,7 +39,7 @@ public class AuthService {
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(registerRequestDTO.password());
-        User user = new User(registerRequestDTO.email(), registerRequestDTO.name(), encryptedPassword, registerRequestDTO.role());
+        User user = new User(registerRequestDTO.email(), registerRequestDTO.name(), encryptedPassword, registerRequestDTO.role(), registerRequestDTO.incomes(), registerRequestDTO.expenses());
 
         User savedUser = this.userRepository.save(user);
 
