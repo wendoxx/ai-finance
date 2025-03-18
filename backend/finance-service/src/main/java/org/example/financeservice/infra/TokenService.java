@@ -39,7 +39,6 @@ public class TokenService {
     public String validateToken(String token) {
         try {
             Algorithm algorithm = Algorithm.RSA256(publicKey, privateKey);
-
         return JWT.require(algorithm)
                 .withIssuer("ai-finance")
                 .build()
