@@ -3,7 +3,9 @@ package org.example.financeservice.service;
 import org.example.financeservice.dto.request.ExpenseRequestDTO;
 import org.example.financeservice.dto.response.ExpenseResponseDTO;
 import org.example.financeservice.model.Expense;
+import org.example.financeservice.model.User;
 import org.example.financeservice.repository.ExpenseRepository;
+import org.example.financeservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class ExpenseService {
 
     @Autowired
     private ExpenseRepository expenseRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public ExpenseResponseDTO getExpenseById(UUID id) {
         return expenseRepository.findById(id).map(ExpenseResponseDTO::new)
@@ -28,9 +33,12 @@ public class ExpenseService {
             expense = new Expense();
         }
 
+        User user = userRepository.findById(expenseRequestDTO.user()).orElseThrow(() -> new RuntimeException("User not found"));
+
         expense.setAmount(expenseRequestDTO.amount());
         expense.setDate(expenseRequestDTO.date());
         expense.setDescription(expenseRequestDTO.description());
+        expense.setUser(user);
 
         return expenseRepository.save(expense);
     }

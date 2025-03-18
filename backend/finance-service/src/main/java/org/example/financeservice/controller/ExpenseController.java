@@ -18,17 +18,17 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/get-expense/{id}")
-    public ResponseEntity<ExpenseResponseDTO> findExpenseById(UUID id) {
+    public ResponseEntity<ExpenseResponseDTO> findExpenseById(@PathVariable UUID id) {
         return ResponseEntity.ok(expenseService.getExpenseById(id));
     }
 
     @PostMapping("/create-expense")
-    public ResponseEntity<Expense> createExpense (ExpenseRequestDTO expenseRequestDTO) {
+    public ResponseEntity<Expense> createExpense (@RequestBody ExpenseRequestDTO expenseRequestDTO) {
         return ResponseEntity.status(201).body(expenseService.createAndUpdateExpense(expenseRequestDTO));
     }
 
     @PutMapping("/update-expense")
-    public ResponseEntity<Expense> updateExpense (ExpenseRequestDTO expenseRequestDTO) {
+    public ResponseEntity<Expense> updateExpense (@RequestBody ExpenseRequestDTO expenseRequestDTO) {
         return ResponseEntity.status(201).body(expenseService.createAndUpdateExpense(expenseRequestDTO));
     }
 
