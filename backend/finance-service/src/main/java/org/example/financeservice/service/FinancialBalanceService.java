@@ -21,11 +21,12 @@ public class FinancialBalanceService {
     IncomeRepository incomeRepository;
 
     public FinancialBalanceResponseDTO getFinancialBalance(FinancialBalanceRequestDTO financialBalanceRequestDTO) {
-        BigDecimal totalIncome = incomeRepository.findTotalIncomeBetweenDates(financialBalanceRequestDTO.startDate(), financialBalanceRequestDTO.endDate());
-        BigDecimal totalExpense = expenseRepository.findTotalExpenseBetweenDates(financialBalanceRequestDTO.startDate(), financialBalanceRequestDTO.endDate());
-        BigDecimal balance = totalIncome.subtract(totalExpense);
 
-        return new FinancialBalanceResponseDTO(totalIncome, totalExpense, balance);
+        BigDecimal totalIncome = incomeRepository.findTotalIncomeByUserBetweenDates(financialBalanceRequestDTO.user(), financialBalanceRequestDTO.startDate(), financialBalanceRequestDTO.endDate());
+        BigDecimal totalExpense = expenseRepository.findTotalExpenseByUserBetweenDates(financialBalanceRequestDTO.user(), financialBalanceRequestDTO.startDate(), financialBalanceRequestDTO.endDate());
+        BigDecimal userBalance = totalIncome.subtract(totalExpense);
+
+        return new FinancialBalanceResponseDTO(totalIncome, totalExpense, userBalance);
     }
 
 }
