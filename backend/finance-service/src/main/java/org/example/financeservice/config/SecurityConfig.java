@@ -29,8 +29,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("api/v1/auth/login", "api/v1/auth/register").permitAll()
-                        .requestMatchers("api/v1/expense/**").authenticated()
-                        .requestMatchers("api/v1/income/**").authenticated()
+                        .requestMatchers("api/v1/expense/**").permitAll()
+                        .requestMatchers("api/v1/income/**").permitAll()
+                        .requestMatchers("api/v1/financial-balance/get-financial-balance").permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
