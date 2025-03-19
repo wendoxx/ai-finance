@@ -12,6 +12,6 @@ import java.util.UUID;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, UUID> {
-    @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.date BETWEEN :startDate AND :endDate")
-    BigDecimal findTotalExpenseBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.user.id = :userId AND e.date BETWEEN :startDate AND :endDate")
+    BigDecimal findTotalExpenseByUserBetweenDates(@Param("userId") UUID userId , @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
