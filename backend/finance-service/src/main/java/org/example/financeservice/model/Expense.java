@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.example.financeservice.utils.ExpenseType;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -30,4 +31,5 @@ public class Expense implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private ExpenseType type;
 }
