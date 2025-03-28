@@ -32,6 +32,8 @@ public class SecurityConfig {
                         .requestMatchers("api/v1/expense/**").permitAll()
                         .requestMatchers("api/v1/income/**").permitAll()
                         .requestMatchers("api/v1/financial-balance/get-financial-balance").permitAll()
+                        .requestMatchers("api/v1/chat-ai/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
