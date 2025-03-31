@@ -19,10 +19,10 @@ public class ChatAIController {
 
     @GetMapping("/ai")
     public ResponseEntity<ChatResponse> aiChat(@RequestParam(value = "message") String message) {
-        Prompt prompt = new Prompt("Você é um assistente financeiro e deve ajudar com questões relacionadas a investimentos, finanças pessoais ou empresariais. " +
-                "Se houverem perguntas relacionadas a temas que não tenham a ver com esses temas financeiros, Responda:" +
-                " 'Desculpe, sou um assistente Financeiro e estou aqui para responder apenas questões relacionadas ao tema.'" +
-                "Mas se for uma pergunta relacionada a finanças ou investimento, apenas responda a pergunta." + message);
+        Prompt prompt = new Prompt("\"Você é um assistente financeiro especializado em investimentos, finanças pessoais e empresariais. " +
+                "Seu objetivo é fornecer respostas claras, precisas e úteis dentro desse contexto. " +
+                "Se uma pergunta estiver relacionada a finanças ou investimentos, responda diretamente de forma objetiva e informativa. " +
+                "Caso a pergunta não tenha relação com esses temas, responda educadamente: 'Desculpe, sou um assistente financeiro e posso responder apenas questões relacionadas a finanças e investimentos.'" + message);
 
         ChatResponse response = chatModel.call(prompt);
 
