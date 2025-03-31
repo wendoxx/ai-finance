@@ -15,7 +15,7 @@ Até o momento apenas o back-end do projeto está em desenvolvimento. E já é p
 - Adicionar quantias de entrada (amouts)
 - Adicionar quantias de saída, ou despesas (expenses)
 - Obter um balanço financeiro, uma consulta nas entradas e gastos durante o período de tempo que for definido
-- Iniciar um chat com o modelo de IA Ollama 3.1 7b
+- Iniciar um chat com o modelo de IA Ollama mistral
 
 ## O que será implementado ainda?
 - A lógica de segurança será refeita por completo, então no momento todas as requisições estão abertas.
