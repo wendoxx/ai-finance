@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16.8
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: ai-finance
+
+  ai:
+    image: ollama/ollama
+    ports:
+      - "11435:11434"
+    restart: unless-stopped
+
+  api:
+    image: ai-finance:0.1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - ai
