@@ -6,11 +6,15 @@ services:
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: ai-finance
 
+##TODO: add volume for db
   ai:
     image: ollama/ollama
     ports:
       - "11435:11434"
+    volumes:
+      - ollama_data:/root/.ollama
     restart: unless-stopped
+#TODO: automate the mistral model download
 
   api:
     image: ai-finance:0.1
@@ -19,3 +23,5 @@ services:
     depends_on:
       - db
       - ai
+volumes:
+  ollama_data:
