@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: postgres-db
     image: postgres:16.8
     environment:
       POSTGRES_USER: postgres
@@ -8,20 +9,24 @@ services:
     volumes:
       - database_data:/var/lib/postgresql/data
 
-##TODO: add volume for db
   ai:
+    container_name: ollama-ai
     image: ollama/ollama
     ports:
       - "11435:11434"
     volumes:
       - ollama_data:/root/.ollama
+      - ./entrypoint.sh:/entrypoint.sh
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
     restart: unless-stopped
-#TODO: automate the mistral model download
 
   api:
-    image: ai-finance:0.1
+    container_name: api-ai-finance
+    image: ai-finance:0.8
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_AI_OLLAMA_BASE-URL=http://ai:11434
     depends_on:
       - db
       - ai
