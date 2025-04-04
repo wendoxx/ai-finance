@@ -5,6 +5,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: ai-finance
+    volumes:
+      - database_data:/var/lib/postgresql/data
 
 ##TODO: add volume for db
   ai:
@@ -25,3 +27,5 @@ services:
       - ai
 volumes:
   ollama_data:
+  database_data:
+    driver: local
