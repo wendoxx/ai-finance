@@ -8,6 +8,7 @@ O AI Finance é um projeto em desenvolvimento que tem a finalidade de ajudar pes
 - Spring AI
 - PostgreSQL
 - Flyway
+- Docker
 
 ## O que foi desenvolvido até o momento?
 Até o momento apenas o back-end do projeto está em desenvolvimento. E já é possível:
