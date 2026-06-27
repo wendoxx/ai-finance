@@ -1,36 +1,36 @@
-services:
-  db:
-    container_name: postgres-db
-    image: postgres:16.8
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: ai-finance
-    volumes:
-      - database_data:/var/lib/postgresql/data
-
-  ai:
-    container_name: ollama-ai
-    image: ollama/ollama
-    ports:
-      - "11435:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-      - ./entrypoint.sh:/entrypoint.sh
-    entrypoint: ["/bin/bash", "/entrypoint.sh"]
-    restart: unless-stopped
-
-  api:
-    container_name: api-ai-finance
-    image: ai-finance:0.8
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_AI_OLLAMA_BASE-URL=http://ai:11434
-    depends_on:
-      - db
-      - ai
-volumes:
-  ollama_data:
-  database_data:
-    driver: local
+#services:
+#  db:
+#    container_name: postgres-db
+#    image: postgres:16.8
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: 12345
+#      POSTGRES_DB: ai-finance
+#    volumes:
+#      - database_data:/var/lib/postgresql/data
+#
+#  ai:
+#    container_name: ollama-ai
+#    image: ollama/ollama
+#    ports:
+#      - "11435:11434"
+#    volumes:
+#      - ollama_data:/root/.ollama
+#      - ./entrypoint.sh:/entrypoint.sh
+#    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+#    restart: unless-stopped
+#
+#  api:
+#    container_name: api-ai-finance
+#    image: ai-finance:0.8
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_AI_OLLAMA_BASE-URL=http://ai:11434
+#    depends_on:
+#      - db
+#      - ai
+#volumes:
+#  ollama_data:
+#  database_data:
+#    driver: local
